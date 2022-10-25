@@ -1,0 +1,20 @@
+.connect-wallet-warraper{
+    position: absolute;
+    right:20px;
+    top:40px;
+}
+
+.connect-wallet{
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-family: 'Retropix', sans-serif;    
+    font-size: 20px;
+    background-color: #eb3fa6;    
+
+    cursor: pointer;
+    transition: transform .2s; /* Animation */
+}
+
+.connect-wallet:hover{
+    transform: scale(1.1)
+}
