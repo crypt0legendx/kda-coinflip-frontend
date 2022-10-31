@@ -12,7 +12,7 @@ h2,h4{
 }
 
 .coin-logo{
-    max-width:160px;
+    max-width:200px;
 }
 
 .head-tail-section{
@@ -30,9 +30,8 @@ h2,h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Retropix', sans-serif;    
-    background-color: #eb3fa6;    
-
+    font-family: 'Retropix', sans-serif;        
+    border: 0px;
     cursor: pointer;    
     transition: transform .2s; /* Animation */
 }
@@ -43,26 +42,73 @@ h2,h4{
 
 .small-btn.active, .mid-btn.active{
     font-weight: bold;
-    background-color: #5f0e36;
-    color: #ef89cc;
+    
 }
 
 .small-btn{
     font-size: 25px;
-    padding: 10px 10px;
+    padding: 17px 38px;
     border-radius: 4px;    
+    width: 140px;
+    height: 60px;
+}
+
+.small-btn.kda-1{
+    background: url("../../assets/images/1kda.png");
+    background-size: cover;
+}
+
+.small-btn.kda-2{
+    background: url("../../assets/images/2kda.png");
+    background-size: cover;
+}
+
+.small-btn.kda-5{
+    background: url("../../assets/images/5kda.png");
+    background-size: cover;
+}
+
+.small-btn.kda-10{
+    background: url("../../assets/images/10kda.png");
+    background-size: cover;
+}
+
+.small-btn.kda-20{
+    background: url("../../assets/images/20kda.png");
+    background-size: cover;
+}
+
+.small-btn.kda-50{
+    background: url("../../assets/images/50kda.png");
+    background-size: cover;
 }
 
 .mid-btn{
     font-size: 45px;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 4px;
+    width:220px;
+    height: 94px;
+    
+}
+
+.mid-btn.head{
+    background: url("../../assets/images/heads.png");
+    background-size: cover;
+}
+.mid-btn.tail{
+    background: url("../../assets/images/tails.png");
+    background-size: cover;
 }
 
 .large-btn{
     font-size: 60px;
-    font-weight: bold;
-    padding: 10px 30px;
+    font-weight: bold;    
     border-radius: 4px;
+    max-width: 256px;
+}
+
+.large-img{
+    width:200%
 }

@@ -43,8 +43,7 @@ function ConnectWallet() {
         method: "kda_connect",
         networkId: NETWORK_ID,
       })
-      .then((res) => {
-        console.log(res)
+      .then((res) => {        
         if (res.status == "success") {
           setConnected(true)
           setAddress(res.account.account)
