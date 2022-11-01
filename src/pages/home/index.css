@@ -2,6 +2,7 @@ h2,h4{
     font-stretch: expanded;
 }
 .home-container{
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,7 +42,7 @@ h2,h4{
 }
 
 .small-btn.active, .mid-btn.active{
-    font-weight: bold;
+    opacity: 0.6;
     
 }
 
@@ -51,6 +52,7 @@ h2,h4{
     border-radius: 4px;    
     width: 140px;
     height: 60px;
+    
 }
 
 .small-btn.kda-1{
@@ -93,6 +95,10 @@ h2,h4{
     
 }
 
+.mid-btn.active{
+    opacity: 0.6;
+}
+
 .mid-btn.head{
     background: url("../../assets/images/heads.png");
     background-size: cover;
@@ -111,4 +117,12 @@ h2,h4{
 
 .large-img{
     width:200%
+}
+
+.divider{
+    height:2px;
+    background-color: #5d5a5a;
+    width: 100%;
+    max-width: 600px;
+    margin:20px 0px;
 }
