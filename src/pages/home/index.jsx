@@ -20,6 +20,8 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [resultStatus, setResultStatus] = useState(false);
   const [result, setResult] = useState("");
+  const [claimLoading, setClaimLoading] = useState(false);
+  const [claimResult, setClaimResult] = useState("");
   const bank_account =
     "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
 
@@ -69,7 +71,7 @@ function Home() {
     };
   }, [account]);
 
-  const placeBet = async () => {
+  const placeBet = async () => {    
     const transferArgs = [
       account,
       bank_account,
@@ -98,7 +100,7 @@ function Home() {
         .then((data) => {
           if (data.result.status === "success") {
             setResultStatus(true);
-            setResult(data.result.data);            
+            setResult(data.result.data);
           }
           setLoading(false);
         })
@@ -110,9 +112,52 @@ function Home() {
     }
   };
 
+  const withdrawWinnings = async () => {
+    const transferArgs = [bank_account, account, parseFloat(claimAmount)];
+    const winnerArgs = [account, parseFloat(claimAmount)];
+    const withdrawCaps = [
+      Pact.lang.mkCap("Gas", "gas", "coin.GAS"),
+      Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs),
+      Pact.lang.mkCap(
+        "Winner",
+        "winner",
+        "free.coinflip-ryu-latest.WINNER",
+        winnerArgs
+      ),
+    ];
+    setClaimResult("Pending");
+    const res = await dispatch(
+      signAndSend(
+        "1",
+        `(free.coinflip-ryu-latest.withdraw-winnings "${account}" ${claimAmount})`,
+        envData,
+        withdrawCaps,
+        gasLimit,
+        gasPrice,
+        true
+      )
+    );
+    if (res) {
+      res.listenPromise
+        .then((data) => {
+          if (data.result.status === "success") {
+            setClaimResult("Success");
+          } else {
+            setClaimResult("Failure");
+          }
+        })
+        .catch(() => {
+          setClaimResult("Failure");
+        });
+    } else {
+      setClaimResult("Failure");
+    }
+  };
+
   const handlePlayAgain = () => {
     setResultStatus(false);
     setResult("");
+    setClaimResult("")
   };
 
   return (
@@ -121,9 +166,13 @@ function Home() {
         <div className="home-container">
           <img className="coin-logo" src="./logo.png" />
           {result === "Lost bet" ? (
-            <h2 className="text-3xl py-2 font-bold text-red-600">You lost {betAmount} KDA</h2>
+            <h2 className="text-3xl py-2 font-bold text-red-600">
+              You lost {betAmount} KDA
+            </h2>
           ) : (
-            <h2 className="text-3xl py-2 font-bold text-green-600">You won {betAmount} KDA</h2>
+            <h2 className="text-3xl py-2 font-bold text-green-600">
+              You won {betAmount} KDA
+            </h2>
           )}
 
           <button className="large-btn" onClickCapture={handlePlayAgain}>
@@ -220,9 +269,14 @@ function Home() {
           <div className="flex justify-start w-full font-bold">
             <h2>Claimable amount: {claimAmount}KDA</h2>
           </div>
-          <button disabled={loading || account === ""} className="large-btn">
+          <button disabled={loading || account === ""} className="large-btn" onClick={withdrawWinnings}> 
             <img src="./images/CLAIM_REWARDS.png" className="large-img" />
           </button>
+          {claimResult !== "" && (
+            <div className="flex justify-start w-full font-bold">
+              <h2>Claim Status: {claimResult}</h2>
+            </div>
+          )}
         </div>
       )}
     </div>
