@@ -1,34 +1,36 @@
-import { useEffect } from "react"
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import Pact from 'pact-lang-api';
-import { local, signAndSend } from "../../kda-wallet/store/kadenaSlice"
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Pact from "pact-lang-api";
+import { local, signAndSend } from "../../kda-wallet/store/kadenaSlice";
 
-
-import "./index.css"
+import "./index.css";
 
 function Home() {
-  const dispatch = useDispatch()
-  const account = useSelector((state) => state.kadenaInfo.account)
-  const metaInfo = useSelector((state) => state.metaInfo)
-  const { code, envData, caps, gasLimit, gasPrice, chainIds } = metaInfo
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state.kadenaInfo.account);
+  const metaInfo = useSelector((state) => state.metaInfo);
+  const { code, envData, caps, gasLimit, gasPrice, chainIds } = metaInfo;
 
-  const [balance, setBalance] = useState(0)
-  const [betAmount, setBetAmount] = useState(1)
-  const [claimAmount, setClaimAmount] = useState(0)
-  const [headTail, setHeadTail] = useState(0)
+  const [balance, setBalance] = useState(0);
+  const [betAmount, setBetAmount] = useState(1.0);
+  const [claimAmount, setClaimAmount] = useState(0);
+  const [headTail, setHeadTail] = useState(0);
 
-  const [loading, setLoading] = useState(false)
-  const bank_account="u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
+  const [loading, setLoading] = useState(false);
+  const [resultStatus, setResultStatus] = useState(false);
+  const [result, setResult] = useState({});
+  const bank_account =
+    "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
 
   // Local Update Timer //
-  var timer
+  var timer;
 
   useEffect(() => {
-    setBalance(0)
-    setClaimAmount(0)
+    setBalance(0);
+    setClaimAmount(0);
     if (timer) {
-      clearInterval(timer)
+      clearInterval(timer);
     }
     if (account !== "") {
       timer = setInterval(async () => {
@@ -42,9 +44,9 @@ function Home() {
             gasPrice,
             true
           )
-        )
+        );
         if (res1.result?.status === "success") {
-          setBalance(res1.result.data.balance)
+          setBalance(res1.result.data.balance);
         }
         let res2 = await dispatch(
           local(
@@ -56,44 +58,63 @@ function Home() {
             gasPrice,
             true
           )
-        )
+        );
         if (res2.result?.status === "success") {
-          setClaimAmount(res2.result.data)
+          setClaimAmount(res2.result.data);
         }
-      }, 3000)
+      }, 3000);
     }
     return () => {
-      clearInterval(timer)
-    }
-  }, [account])
+      clearInterval(timer);
+    };
+  }, [account]);
 
-  const placeBet = async() => {
-    
-    const transferArgs = [account, bank_account,betAmount];
-    const betCaps = [
-        Pact.lang.mkCap("Gas", "gas", "coin.GAS"),        
-        Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs)
+  const placeBet = async () => {
+    const transferArgs = [
+      account,
+      bank_account,
+      parseFloat(betAmount.toFixed(1)),
     ];
-    console.log(betCaps);
-    setLoading(true)        
+    const betCaps = [
+      Pact.lang.mkCap("Gas", "gas", "coin.GAS"),
+      Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs),
+    ];    
+    setLoading(true);
     const res = await dispatch(
       signAndSend(
-          "1",
-          `(free.coinflip-ryu-latest.place-bet "${account}" ${headTail} ${betAmount})`,
-          envData,
-          betCaps,
-          gasLimit,
-          gasPrice,
-          true
-        )
-    )
-    setLoading(false);
-    console.log(res);
-  }
+        "1",
+        `(free.coinflip-ryu-latest.place-bet "${account}" ${headTail} ${betAmount.toFixed(
+          1
+        )})`,
+        envData,
+        betCaps,
+        gasLimit,
+        gasPrice,
+        true
+      )
+    );
+    if (res) {
+      res.listenPromise
+        .then((data) => {
+          if (data.result.status === "success") {
+            setResultStatus(true);
+            setResult(data.result.data);
+          }
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
-      {loading ? (
+      {resultStatus ? (
+        <div className="home-container">BetResult:{result}</div>
+      ) : loading ? (
         <div className="home-container">
           <img className="coin-logo" src="./images/coinflipanimation.gif" />
           <h2 className="text-xl">
@@ -126,38 +147,44 @@ function Home() {
           <h2 className="text-xl py-2 font-bold">I WAGER</h2>
           <div className="amount-section">
             <button
-              className={`small-btn kda-1 ${betAmount === 1 ? "active" : ""}`}
-              onClick={() => setBetAmount(1)}
+              className={`small-btn kda-1 ${betAmount === 1.0 ? "active" : ""}`}
+              onClick={() => setBetAmount(1.0)}
             >
               <img src="./images/1kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn kda-2 ${betAmount === 2 ? "active" : ""}`}
-              onClick={() => setBetAmount(2)}
+              className={`small-btn kda-2 ${betAmount === 2.0 ? "active" : ""}`}
+              onClick={() => setBetAmount(2.0)}
             >
               <img src="./images/2kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn kda-5 ${betAmount === 5 ? "active" : ""}`}
-              onClick={() => setBetAmount(5)}
+              className={`small-btn kda-5 ${betAmount === 5.0 ? "active" : ""}`}
+              onClick={() => setBetAmount(5.0)}
             >
               <img src="./images/5kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn kda-10 ${betAmount === 10 ? "active" : ""}`}
-              onClick={() => setBetAmount(10)}
+              className={`small-btn kda-10 ${
+                betAmount === 10.0 ? "active" : ""
+              }`}
+              onClick={() => setBetAmount(10.0)}
             >
               <img src="./images/10kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn kda-20 ${betAmount === 20 ? "active" : ""}`}
-              onClick={() => setBetAmount(20)}
+              className={`small-btn kda-20 ${
+                betAmount === 20.0 ? "active" : ""
+              }`}
+              onClick={() => setBetAmount(20.0)}
             >
               <img src="./images/20kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn kda-50 ${betAmount === 50 ? "active" : ""}`}
-              onClick={() => setBetAmount(50)}
+              className={`small-btn kda-50 ${
+                betAmount === 50.0 ? "active" : ""
+              }`}
+              onClick={() => setBetAmount(50.0)}
             >
               <img src="./images/50kda.png" className="small-img" />
             </button>
@@ -183,7 +210,7 @@ function Home() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
