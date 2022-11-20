@@ -47,48 +47,16 @@ h2,h4{
 }
 
 .small-btn{
-    font-size: 25px;
-    padding: 17px 38px;
+    font-size: 25px;    
     border-radius: 4px;    
     width: 140px;
     height: 60px;
     
 }
 
-.small-btn.kda-1{
-    background: url("../../assets/images/1kda.png");
-    background-size: cover;
-}
-
-.small-btn.kda-2{
-    background: url("../../assets/images/2kda.png");
-    background-size: cover;
-}
-
-.small-btn.kda-5{
-    background: url("../../assets/images/5kda.png");
-    background-size: cover;
-}
-
-.small-btn.kda-10{
-    background: url("../../assets/images/10kda.png");
-    background-size: cover;
-}
-
-.small-btn.kda-20{
-    background: url("../../assets/images/20kda.png");
-    background-size: cover;
-}
-
-.small-btn.kda-50{
-    background: url("../../assets/images/50kda.png");
-    background-size: cover;
-}
-
 .mid-btn{
     font-size: 45px;
-    font-weight: bold;
-    padding: 10px 30px;
+    font-weight: bold; 
     border-radius: 4px;
     width:220px;
     height: 94px;
@@ -112,7 +80,7 @@ h2,h4{
     font-size: 60px;
     font-weight: bold;    
     border-radius: 4px;
-    max-width: 256px;
+    max-width: 456px;
 }
 
 .large-img{
