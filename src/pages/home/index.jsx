@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Pact from "pact-lang-api";
 import { local, signAndSend } from "../../kda-wallet/store/kadenaSlice";
 
@@ -71,7 +72,7 @@ function Home() {
     };
   }, [account]);
 
-  const placeBet = async () => {    
+  const placeBet = async () => {
     const transferArgs = [
       account,
       bank_account,
@@ -157,7 +158,7 @@ function Home() {
   const handlePlayAgain = () => {
     setResultStatus(false);
     setResult("");
-    setClaimResult("")
+    setClaimResult("");
   };
 
   return (
@@ -269,13 +270,23 @@ function Home() {
           <div className="flex justify-start w-full font-bold">
             <h2>Claimable amount: {claimAmount}KDA</h2>
           </div>
-          <button disabled={loading || account === ""} className="large-btn" onClick={withdrawWinnings}> 
+          <button
+            disabled={loading || account === ""}
+            className="large-btn"
+            onClick={withdrawWinnings}
+          >
             <img src="./images/CLAIM_REWARDS.png" className="large-img" />
           </button>
           {claimResult !== "" && (
             <div className="flex justify-start w-full font-bold">
               <h2>Claim Status: {claimResult}</h2>
             </div>
+          )}
+          {account ===
+            "k:e5d995c165cf09c67ab1888885715cf08295a8bce29b479414addd15373d9dd7" && (
+            <Link to="/admin">
+              <button className="my-3">Go to Admin</button>
+            </Link>
           )}
         </div>
       )}
