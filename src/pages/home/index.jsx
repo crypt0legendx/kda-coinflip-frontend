@@ -19,7 +19,7 @@ function Home() {
 
   const [loading, setLoading] = useState(false);
   const [resultStatus, setResultStatus] = useState(false);
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState("");
   const bank_account =
     "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
 
@@ -78,7 +78,7 @@ function Home() {
     const betCaps = [
       Pact.lang.mkCap("Gas", "gas", "coin.GAS"),
       Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs),
-    ];    
+    ];
     setLoading(true);
     const res = await dispatch(
       signAndSend(
@@ -98,7 +98,7 @@ function Home() {
         .then((data) => {
           if (data.result.status === "success") {
             setResultStatus(true);
-            setResult(data.result.data);
+            setResult(data.result.data);            
           }
           setLoading(false);
         })
@@ -110,10 +110,26 @@ function Home() {
     }
   };
 
+  const handlePlayAgain = () => {
+    setResultStatus(false);
+    setResult("");
+  };
+
   return (
     <div>
       {resultStatus ? (
-        <div className="home-container">BetResult:{result}</div>
+        <div className="home-container">
+          <img className="coin-logo" src="./logo.png" />
+          {result === "Lost bet" ? (
+            <h2 className="text-3xl py-2 font-bold text-red-600">You lost {betAmount} KDA</h2>
+          ) : (
+            <h2 className="text-3xl py-2 font-bold text-green-600">You won {betAmount} KDA</h2>
+          )}
+
+          <button className="large-btn" onClickCapture={handlePlayAgain}>
+            <img src="./images/playagain.png" className="large-img" />
+          </button>
+        </div>
       ) : loading ? (
         <div className="home-container">
           <img className="coin-logo" src="./images/coinflipanimation.gif" />
