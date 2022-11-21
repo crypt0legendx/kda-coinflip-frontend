@@ -6,6 +6,7 @@ import Pact from "pact-lang-api";
 import { local, signAndSend } from "../../kda-wallet/store/kadenaSlice";
 
 import "./index.css";
+import AboutModal from "./components/AboutModal";
 
 function Home() {
   const dispatch = useDispatch();
@@ -19,9 +20,8 @@ function Home() {
   const [headTail, setHeadTail] = useState(0);
 
   const [loading, setLoading] = useState(false);
-  const [resultStatus, setResultStatus] = useState(false);
+  const [resultStatus, setResultStatus] = useState(true);
   const [result, setResult] = useState("");
-  const [claimLoading, setClaimLoading] = useState(false);
   const [claimResult, setClaimResult] = useState("");
   const bank_account =
     "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
@@ -164,31 +164,31 @@ function Home() {
   return (
     <div>
       {resultStatus ? (
-        <div className="home-container">
-          <img className="coin-logo" src="./logo.png" />
+        <div className="home-container  mt-10">
+          <img className="h-64" src="./logo.png" />
           {result === "Lost bet" ? (
-            <h2 className="text-3xl py-2 font-bold text-red-600">
+            <h2 className="text-3xl py-2 font-bold text-red-600  mt-10 ">
               You lost {betAmount} KDA
             </h2>
           ) : (
-            <h2 className="text-3xl py-2 font-bold text-green-600">
+            <h2 className="text-3xl py-2 font-bold text-green-600  mt-10">
               You won {betAmount} KDA
             </h2>
           )}
 
-          <button className="large-btn" onClickCapture={handlePlayAgain}>
+          <button className="large-btn mt-5 " onClickCapture={handlePlayAgain}>
             <img src="./images/playagain.png" className="large-img" />
           </button>
         </div>
       ) : loading ? (
-        <div className="home-container">
+        <div className="home-container mt-20">
           <img className="coin-logo" src="./images/coinflipanimation.gif" />
-          <h2 className="text-xl">
+          <h2 className="text-2xl mt-10 font-bold">
             <i>Flipping...</i>
           </h2>
-          <h2 className="text-xl">
+          <h2 className="text-2xl font-bold">
             <i>
-              {headTail === 0 ? "HeadS" : "Tails"} for {betAmount} KDA
+              {headTail === 0 ? "Heads" : "Tails"} for {betAmount} KDA
             </i>
           </h2>
         </div>
@@ -290,6 +290,9 @@ function Home() {
           )}
         </div>
       )}
+      <div>
+        <AboutModal />
+      </div>
     </div>
   );
 }

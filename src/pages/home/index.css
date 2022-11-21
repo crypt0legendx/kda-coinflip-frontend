@@ -42,7 +42,8 @@ h2,h4{
 }
 
 .small-btn.active, .mid-btn.active{
-    opacity: 0.6;
+    border: 5px solid black;    
+    border-radius: 0px;
     
 }
 
@@ -61,10 +62,6 @@ h2,h4{
     width:220px;
     height: 94px;
     
-}
-
-.mid-btn.active{
-    opacity: 0.6;
 }
 
 .mid-btn.head{
