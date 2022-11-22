@@ -1,0 +1,77 @@
+h2,h4{
+    font-stretch: expanded;
+}
+.home-container{
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+
+    font-family: 'Retropix', sans-serif;
+}
+
+.coin-logo{
+    max-width:200px;
+}
+
+.head-tail-section{
+    display: flex;
+    gap:20px;
+}
+
+.amount-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
+}
+
+.small-btn, .mid-btn, .large-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Retropix', sans-serif;            
+    cursor: pointer;    
+    transition: transform .2s; /* Animation */
+}
+
+.small-btn:hover, .mid-btn:hover, .large-btn:hover{
+    transform: scale(1.1)
+}
+
+
+.small-btn{
+    font-size: 25px;    
+    border-radius: 4px;    
+    width: 140px;
+    height: 60px;
+    
+}
+
+.mid-btn{
+    font-size: 45px;
+    font-weight: bold; 
+    border-radius: 4px;
+    width:220px;
+    height: 94px;
+}
+
+.large-btn{
+    font-size: 60px;
+    font-weight: bold;    
+    border-radius: 4px;
+    max-width: 456px;
+}
+
+.large-img{
+    width:200%
+}
+
+.divider{
+    height:2px;
+    background-color: #5d5a5a;
+    width: 100%;
+    max-width: 600px;
+    margin:20px 0px;
+}

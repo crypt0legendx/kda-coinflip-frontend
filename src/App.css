@@ -1,38 +1,28 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "CURSIVE";
+  src: url("./assets/fonts/cursive.woff2");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face { font-family: Retropix; 
+  src: url('./assets/fonts/retropix_font/TTF/Retropix-Regular.ttf'); 
+} 
+
+* {
+  font-family: 'Retropix', sans-serif;  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-title {
   display: flex;
-  flex-direction: column;
+  font-size: 5rem;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  font-family: 'Retropix', sans-serif;
+  padding: 30px 30px;
+  margin-top: 30px;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  
 }

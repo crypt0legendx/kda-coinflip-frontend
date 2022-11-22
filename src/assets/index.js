@@ -1,0 +1,1 @@
+export { ReactComponent as KadenaKodeLogo } from './KadenaKodeLogo.svg';
