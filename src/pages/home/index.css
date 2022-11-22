@@ -2,7 +2,7 @@ h2,h4{
     font-stretch: expanded;
 }
 .home-container{
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,8 +31,7 @@ h2,h4{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Retropix', sans-serif;        
-    border: 0px;
+    font-family: 'Retropix', sans-serif;            
     cursor: pointer;    
     transition: transform .2s; /* Animation */
 }
@@ -41,11 +40,6 @@ h2,h4{
     transform: scale(1.1)
 }
 
-.small-btn.active, .mid-btn.active{
-    border: 5px solid black;    
-    border-radius: 0px;
-    
-}
 
 .small-btn{
     font-size: 25px;    
@@ -61,16 +55,6 @@ h2,h4{
     border-radius: 4px;
     width:220px;
     height: 94px;
-    
-}
-
-.mid-btn.head{
-    background: url("../../assets/images/heads.png");
-    background-size: cover;
-}
-.mid-btn.tail{
-    background: url("../../assets/images/tails.png");
-    background-size: cover;
 }
 
 .large-btn{

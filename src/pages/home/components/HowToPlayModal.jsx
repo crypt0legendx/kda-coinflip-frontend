@@ -1,11 +1,10 @@
 import useTheme from "../../../hooks/useTheme"
 
-function AboutModal(props) {
-
+function HowToPlayModal(props) {
   const { theme, changeTheme } = useTheme()
   return (
     <div
-      className={props.show ? "relative z-10" : "hidden"}
+    className={props.show ? "relative z-10" : "hidden"}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -21,19 +20,27 @@ function AboutModal(props) {
                     className="text-4xl font-bold leading-6"
                     id="modal-title"
                   >
-                    About
+                    How to Play
                   </h3>
-                  <div className="mt-6">
+                  <div className="mt-6 flex flex-col gap-5">
                     <p className="text-lg">
-                      Kadena Coin Flip is a smart contract where users can play
-                      double or nothing. The odds are exactly 50/50 with a 3.5%
-                      fee that goes to KCF holders. Each transaction is
-                      verifiable on the Kadena blockchain and all outcomes are
-                      completely random. You can purchase a KCF NFT at&nbsp;
-                      <a className="text-blue-600" href="https://mintit.studio">https://mintit.studio</a> to start earning rewards from the
-                      platform!
+                      1. Connect your X-Wallet. (Get it <a href="https://xwallet.kaddex.com/" className="text-blue-600 underline">here</a>)
                     </p>
-                  </div>            
+                    <p className="text-lg">2. Select heads or tails.</p>
+                    <p className="text-lg">
+                      3. Select your wager amount in KDA.
+                    </p>
+                    <p className="text-lg">
+                      4. Click the "Double or Nothing!" button.
+                    </p>
+                    <p className="text-lg">
+                      5. Confirm the transaction with your X-Wallet.
+                    </p>
+                    <p className="text-lg">
+                      6. Wait for the result and collect your rewards if you
+                      win!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -53,4 +60,4 @@ function AboutModal(props) {
   )
 }
 
-export default AboutModal
+export default HowToPlayModal

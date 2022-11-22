@@ -1,11 +1,10 @@
 import useTheme from "../../../hooks/useTheme"
 
-function AboutModal(props) {
-
+function FaqModal(props) {
   const { theme, changeTheme } = useTheme()
   return (
     <div
-      className={props.show ? "relative z-10" : "hidden"}
+    className={props.show ? "relative z-10" : "hidden"}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -21,19 +20,38 @@ function AboutModal(props) {
                     className="text-4xl font-bold leading-6"
                     id="modal-title"
                   >
-                    About
+                    Faq
                   </h3>
-                  <div className="mt-6">
+                  <div className="mt-6 flex flex-col gap-5">
+                    <p className="text-2xl font-bold underline">
+                      What is Kadena Coin Flip?
+                    </p>
                     <p className="text-lg">
                       Kadena Coin Flip is a smart contract where users can play
-                      double or nothing. The odds are exactly 50/50 with a 3.5%
-                      fee that goes to KCF holders. Each transaction is
-                      verifiable on the Kadena blockchain and all outcomes are
-                      completely random. You can purchase a KCF NFT at&nbsp;
-                      <a className="text-blue-600" href="https://mintit.studio">https://mintit.studio</a> to start earning rewards from the
-                      platform!
+                      double or nothing to earn KDA.
                     </p>
-                  </div>            
+                    <p className="text-2xl font-bold underline">
+                      Where can I buy a KCF NFT?
+                    </p>
+                    <p className="text-lg">
+                      You can purchace a KCF NFT on Mint-it <a className="text-blue-700 underline" href="https://mintit.studio/">here</a> .
+                    </p>
+                    <p className="text-2xl font-bold underline">
+                      How do I earn rewards?
+                    </p>
+                    <p className="text-lg">
+                      KCF takes a 3.5% on each flip and 80% of those profits are
+                      distributed directly to holders. Each week these rewards
+                      are sent directly to NFT holder wallets.
+                    </p>
+                    <p className="text-2xl font-bold underline">
+                      Where can I join the community?
+                    </p>
+                    <p className="text-lg">
+                      You can join our Discord <a className="text-blue-700 underline" href="https://discord.gg/">here</a>. We have a full time support
+                      team that can help you find whatever you need.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -53,4 +71,4 @@ function AboutModal(props) {
   )
 }
 
-export default AboutModal
+export default FaqModal
