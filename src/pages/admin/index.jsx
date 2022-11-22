@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Pact from "pact-lang-api";
 import { local, signAndSend } from "../../kda-wallet/store/kadenaSlice";
+import useTheme from "../../hooks/useTheme";
 
 function Admin() {
+  const { theme, changeTheme } = useTheme()
+
   const dispatch = useDispatch();
   const account = useSelector((state) => state.kadenaInfo.account);
   const metaInfo = useSelector((state) => state.metaInfo);
@@ -141,8 +144,8 @@ function Admin() {
 
   return (
     <div className="flex flex-col">
-      <div className="text-xl font-bold">Your Balance: {balance}</div>
-      <div className="text-xl font-bold">Treasury: {treasury}</div>
+      <div className={`text-xl font-bold ${theme === "dark"?"text-white":""}`}>Your Balance: {balance}</div>
+      <div className={`text-xl font-bold ${theme === "dark"?"text-white":""}`}>Treasury: {treasury}</div>
       <input
         type="number"
         className="border h-10 px-2"
@@ -177,7 +180,7 @@ function Admin() {
         </div>
       )}
       <Link to="/home">
-        <button className="my-3">{`<`} Go to Home</button>
+        <button className={`my-3 ${theme === "dark"?"text-white":""}`}>{`<`} Go to Home</button>
       </Link>
     </div>
   );
