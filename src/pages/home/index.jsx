@@ -84,6 +84,7 @@ function Home() {
   }, [account])
 
   const placeBet = async () => {
+    if(balance<betAmount) return;
     const transferArgs = [
       account,
       bank_account,
