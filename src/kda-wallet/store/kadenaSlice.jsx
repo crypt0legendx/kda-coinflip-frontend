@@ -6,8 +6,8 @@ import { hideConnectWalletModal } from './connectWalletModalSlice';
 export const kadenaSlice = createSlice({
   name: 'kadenaInfo',
   initialState: {
-    network: 'https://api.testnet.chainweb.com',
-    networkId: 'testnet04',
+    network: 'https://api.chainweb.com',
+    networkId: 'mainnet01',
     ttl: 600,
     provider: '',
     account: '',
