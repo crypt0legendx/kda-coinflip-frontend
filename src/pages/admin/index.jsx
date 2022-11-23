@@ -22,7 +22,7 @@ function Admin() {
   const [txResult, setTxResult] = useState("");
 
   const bank_account =
-    "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
+    "u:free.kda-coinflip.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g";
 
   // Local Update Timer //
   var timer;
@@ -37,7 +37,7 @@ function Admin() {
       timer = setInterval(async () => {
         let res1 = await dispatch(
           local(
-            "1",
+            "8",
             `(coin.details "${account}")`,
             envData,
             caps,
@@ -51,7 +51,7 @@ function Admin() {
         }
         let res2 = await dispatch(
           local(
-            "1",
+            "8",
             `(coin.details "${bank_account}")`,
             envData,
             caps,
@@ -75,13 +75,13 @@ function Admin() {
     const depositCaps = [
       Pact.lang.mkCap("Gas", "gas", "coin.GAS"),
       Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs),
-      Pact.lang.mkCap("Ops", "ops", "free.coinflip-ryu-latest.OPS"),
+      Pact.lang.mkCap("Ops", "ops", "free.kda-coinflip.OPS"),
     ];
     setTxResult("Pending");
     const res = await dispatch(
       signAndSend(
-        "1",
-        `(free.coinflip-ryu-latest.deposit-to-bank "${account}" ${depositAmt})`,
+        "8",
+        `(free.kda-coinflip.deposit-to-bank "${account}" ${depositAmt})`,
         envData,
         depositCaps,
         gasLimit,
@@ -111,13 +111,13 @@ function Admin() {
     const withdrawCaps = [
       Pact.lang.mkCap("Gas", "gas", "coin.GAS"),
       Pact.lang.mkCap("Trasfer", "transfer", "coin.TRANSFER", transferArgs),
-      Pact.lang.mkCap("Ops", "ops", "free.coinflip-ryu-latest.OPS"),
+      Pact.lang.mkCap("Ops", "ops", "free.kda-coinflip.OPS"),
     ];
     setTxResult("Pending");
     const res = await dispatch(
       signAndSend(
-        "1",
-        `(free.coinflip-ryu-latest.withdraw-from-bank "${account}" ${withdrawAmt})`,
+        "8",
+        `(free.kda-coinflip.withdraw-from-bank "${account}" ${withdrawAmt})`,
         envData,
         withdrawCaps,
         gasLimit,
