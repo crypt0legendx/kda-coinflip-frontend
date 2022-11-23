@@ -35,7 +35,7 @@ function Home() {
   const [showFaq, setShowFaq] = useState(false)
 
   const bank_account =
-    "u:free.coinflip-ryu-latest.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g"
+    "u:free.kda-coinflip.require-WITHDRAW:DldRwCblQ7Loqy6wYJnaodHl30d3j3eH-qtFzfEv46g"
 
   // Local Update Timer //
   var timer
@@ -50,7 +50,7 @@ function Home() {
       timer = setInterval(async () => {
         let res1 = await dispatch(
           local(
-            "1",
+            "8",
             `(coin.details "${account}")`,
             envData,
             caps,
@@ -64,8 +64,8 @@ function Home() {
         }
         let res2 = await dispatch(
           local(
-            "1",
-            `(free.coinflip-ryu-latest.get-claim-amount "${account}")`,
+            "8",
+            `(free.kda-coinflip.get-claim-amount "${account}")`,
             envData,
             caps,
             gasLimit,
@@ -84,6 +84,7 @@ function Home() {
   }, [account])
 
   const placeBet = async () => {
+    if(balance<betAmount) return;
     const transferArgs = [
       account,
       bank_account,
@@ -96,8 +97,8 @@ function Home() {
     setLoading(true)
     const res = await dispatch(
       signAndSend(
-        "1",
-        `(free.coinflip-ryu-latest.place-bet "${account}" ${headTail} ${betAmount.toFixed(
+        "8",
+        `(free.kda-coinflip.place-bet "${account}" ${headTail} ${betAmount.toFixed(
           1
         )})`,
         envData,
@@ -133,15 +134,15 @@ function Home() {
       Pact.lang.mkCap(
         "Winner",
         "winner",
-        "free.coinflip-ryu-latest.WINNER",
+        "free.kda-coinflip.WINNER",
         winnerArgs
       ),
     ]
     setClaimResult("Pending")
     const res = await dispatch(
       signAndSend(
-        "1",
-        `(free.coinflip-ryu-latest.withdraw-winnings "${account}" ${claimAmount})`,
+        "8",
+        `(free.kda-coinflip.withdraw-winnings "${account}" ${claimAmount})`,
         envData,
         withdrawCaps,
         gasLimit,
