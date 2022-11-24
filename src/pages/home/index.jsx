@@ -295,7 +295,7 @@ function Home() {
             </div>
           )}
           {account ===
-            "k:e5d995c165cf09c67ab1888885715cf08295a8bce29b479414addd15373d9dd7" && (
+            "k:bd7ba3e2854840b37c7612123a0d3195eb42bb35a9859038cbf0f8d141c7ec34" && (
             <Link to="/admin">
               <button  className={`my-3 ${theme === "dark"?"text-white":""}`}>Go to Admin</button>
             </Link>
