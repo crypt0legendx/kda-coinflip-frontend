@@ -34,7 +34,7 @@ function Navbar() {
 
   return (
     <nav className="w-full flex flex-row justify-between items-center p-2 h-40 text-xl">
-      <div className="flex items-center justify-center  mb-12">
+      <div className="flex items-center justify-center gap-2">
         <label htmlFor="toggleB" className="flex items-center cursor-pointer">
           <div className="relative">
             <input type="checkbox" id="toggleB" className="sr-only" checked = {theme === "light"} onChange={()=>toggleTheme()} />
@@ -42,11 +42,13 @@ function Navbar() {
             <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
           </div>          
         </label>
+        <button><img src="./images/twitter.png" className="w-16 rounded-full" /></button>
+        <button><img src="./images/discord.png" className="w-16 rounded-full" /></button>
       </div>
-      <div className={`text-3xl font-bold sm:text-8xl ${theme==='dark'?"text-white":""}`}>Kadena Coin Flip</div>
+      <div className={`text-3xl sm:text-6xl font-bold text-center md:text-7xl lg:text-8xl ${theme==='dark'?"text-white":""}`}>Kadena Coin Flip</div>
       <FlexRow className="gap-2">
         <CustomButton
-          className="flex-1 sm:flex-none absolute right-10 top-10 bg-pink-300"
+          className="flex-1 sm:flex-none bg-pink"
           text={account === "" ? "Connect Wallet" : "Disconnect"}
           onClick={account === "" ? openModal : disconnect}
         />
