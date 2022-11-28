@@ -1,4 +1,8 @@
 input:checked ~ .dot {
     transform: translateX(100%);
-    background-color: #48bb78;
+    background-color: #eb3fa6;
+  }
+
+  .bg-pink{
+    background-color: #eb3fa6;
   }
