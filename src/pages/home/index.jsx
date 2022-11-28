@@ -210,13 +210,13 @@ function Home() {
           <h2 className={`text-xl py-2 font-bold  ${theme==='dark'?"text-white":""}`}>I CHOOSE</h2>
           <div className="head-tail-section">
             <button
-              className={`mid-btn ${headTail === 0 && theme==="light" ? "border-8 border-black":headTail === 0 && theme==="dark"?"border-8 border-white": ""}`}
+              className={`mid-btn ${headTail === 0 && theme==="light" ? "border-8 border-black  active":headTail === 0 && theme==="dark"?"border-8 border-white  active": ""}`}
               onClick={() => setHeadTail(0)}
             >
               <img src="./images/heads.png" className="large-img" />
             </button>
             <button
-              className={`mid-btn ${headTail === 1 && theme==="light" ? "border-8 border-black":headTail === 1 && theme==="dark"?"border-8 border-white": ""}`}
+              className={`mid-btn ${headTail === 1 && theme==="light" ? "border-8 border-black active":headTail === 1 && theme==="dark"?"border-8 border-white  active": ""}`}
               onClick={() => setHeadTail(1)}
             >
               <img src="./images/tails.png" className="large-img" />
@@ -225,26 +225,26 @@ function Home() {
           <h2 className={`text-xl py-2 font-bold  ${theme==='dark'?"text-white":""}`}>I WAGER</h2>
           <div className="amount-section">
             <button
-              className={`small-btn ${betAmount === 1.0 ? "border-4" : ""} ${theme === "light"?"border-black":"border-white"}`}
+              className={`small-btn ${betAmount === 1.0 ? "border-4  active" : ""} ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(1.0)}
             >
               <img src="./images/1kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn ${betAmount === 2.0 ? "border-4" : ""}  ${theme === "light"?"border-black":"border-white"}`}
+              className={`small-btn ${betAmount === 2.0 ? "border-4  active" : ""}  ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(2.0)}
             >
               <img src="./images/2kda.png" className="small-img" />
             </button>
             <button
-              className={`small-btn ${betAmount === 5.0 ? "border-4" : ""} ${theme === "light"?"border-black":"border-white"}`}
+              className={`small-btn ${betAmount === 5.0 ? "border-4  active" : ""} ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(5.0)}
             >
               <img src="./images/5kda.png" className="small-img" />
             </button>
             <button
               className={`small-btn ${
-                betAmount === 10.0 ? "border-4" : ""
+                betAmount === 10.0 ? "border-4  active" : ""
               } ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(10.0)}
             >
@@ -252,7 +252,7 @@ function Home() {
             </button>
             <button
               className={`small-btn ${
-                betAmount === 20.0 ? "border-4" : ""
+                betAmount === 20.0 ? "border-4  active" : ""
               } ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(20.0)}
             >
@@ -260,7 +260,7 @@ function Home() {
             </button>
             <button
               className={`small-btn ${
-                betAmount === 50.0 ? "border-4" : ""
+                betAmount === 50.0 ? "border-4  active" : ""
               } ${theme === "light"?"border-black":"border-white"}`}
               onClick={() => setBetAmount(50.0)}
             >
