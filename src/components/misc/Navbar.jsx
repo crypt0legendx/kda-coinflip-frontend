@@ -52,7 +52,8 @@ function Navbar() {
           text={account === "" ? "Connect Wallet" : "Disconnect"}
           onClick={account === "" ? openModal : disconnect}
         />
-        <div  className={` absolute right-16 top-24 text-14 text-right py-2 ${theme==='dark'?"text-white":""}`}>{reduceToken(account)}<br />Must be on chain 8</div>
+        <div  className={` absolute right-16 top-24 text-14 text-right py-2 ${theme==='dark'?"text-white":""}`}>{reduceToken(account)}<br />
+        {account!==""?"Must be on chain 8":""}</div>
       </FlexRow>
     </nav>
   )
