@@ -34,7 +34,7 @@ function Navbar() {
 
   return (
     <nav className="w-full flex flex-row justify-between items-center p-2 text-xl my-5">
-      <div className="flex items-center justify-center gap-2 w-42">
+      <div className="flex items-center justify-center gap-5 w-42">
         <label htmlFor="toggleB" className="flex items-center cursor-pointer">
           <div className="relative">
             <input type="checkbox" id="toggleB" className="sr-only" checked = {theme === "light"} onChange={()=>toggleTheme()} />
@@ -52,7 +52,7 @@ function Navbar() {
           text={account === "" ? "Connect Wallet" : "Disconnect"}
           onClick={account === "" ? openModal : disconnect}
         />
-        <div  className={` absolute right-16 top-24 text-14 py-2 ${theme==='dark'?"text-white":""}`}>{reduceToken(account)}</div>
+        <div  className={` absolute right-16 top-24 text-14 text-right py-2 ${theme==='dark'?"text-white":""}`}>{reduceToken(account)}<br />Must be on chain 8</div>
       </FlexRow>
     </nav>
   )
